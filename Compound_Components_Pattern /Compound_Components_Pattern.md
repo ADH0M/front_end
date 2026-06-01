@@ -11,6 +11,7 @@ The **Compound Component Pattern** is one of the most powerful React patterns fo
 
 Instead of placing all functionality inside a single component with dozens of props, this pattern distributes responsibilities across multiple cooperating components.
 
+The compound component pattern allows you to create components that all work together to perform a task.
 ---
 
 # Understanding Compound Components
@@ -149,3 +150,7 @@ The **Compound Component Pattern** helps developers:
 - Reduce prop complexity
 - Improve flexibility
 - Create reusable design systems
+
+// resources 
+  1- https://vercel.com/academy/shadcn-ui/compound-components-and-advanced-composition
+  2- https://www.patterns.dev/react/compound-pattern/
