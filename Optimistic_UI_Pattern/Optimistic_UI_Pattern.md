@@ -137,8 +137,8 @@ export default function LikeButton({ postId, initialLikes = 0 }) {
 }
 ```
 
+<!--
 ## some english keywords
-
 > - roll back ----------------------------- الرجوع
 > - optimistic
 > - instantly -instant
@@ -155,4 +155,4 @@ export default function LikeButton({ postId, initialLikes = 0 }) {
 > - temporary
 > - we have been كنا
 > - we have been able to استطعنا
-> - underway قيد التنفيذ
+> - underway قيد التنفيذ -->
