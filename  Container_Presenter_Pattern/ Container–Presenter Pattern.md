@@ -1,12 +1,10 @@
 # Container & Presenter Pattern in React
 
-## Overview
+Overview
 
-The **Container & Presenter Pattern** is a React design pattern used to separate:
-
-- Business logic
-- Data handling
-- UI rendering
+- It used to separate **application logic** from **rendering logic**, making the code more modular, easier to test, and reusable.
+  - Business logic && Data handling
+  - UI rendering
 
 The main goal of this pattern is to improve:
 
@@ -17,9 +15,7 @@ The main goal of this pattern is to improve:
 
 It also helps prevent violations of the **Single Responsibility Principle (SRP)**.
 
----
-
-# The Problem This Pattern Solves
+## The Problem This Pattern Solves
 
 Imagine a React component that:
 
@@ -35,11 +31,11 @@ When all these responsibilities are placed inside a single component, the compon
 - Hard to test
 - Hard to reuse
 
+   <!-- مخصصة- dedicated -->
+
 The **Container & Presenter Pattern** solves this by separating responsibilities into dedicated components.
 
----
-
-# Core Idea
+**\* Core Idea**
 
 > Separate **how things work** from **how things look**
 
@@ -48,34 +44,17 @@ The **Container & Presenter Pattern** solves this by separating responsibilities
 | Container Component | Handles logic and data |
 | Presenter Component | Handles UI rendering   |
 
----
-
-# Container Component
-
 ## What Is a Container Component?
 
 A **Container Component** is responsible for handling application logic and data flow.
 
 It focuses on:
 
-- Fetching data
-- Managing state
+- Responsible for managing the application’s state and logic.
+- Communicates with APIs, handles data, and passes this data to the presentation component.
 - Handling side effects
 - Implementing business logic
-
-The container then passes data and callbacks to presenter components through props.
-
----
-
-## Responsibilities
-
-A Container Component typically:
-
-- Fetches data from APIs
-- Manages application state
 - Handles user interactions
-- Contains business logic
-- Handles side effects
 - Connects to external stores or services
 
 Common tools used inside container components:
@@ -87,47 +66,29 @@ Common tools used inside container components:
 - Zustand
 - React Query
 
----
+The container then passes data and callbacks to presenter components through props.
 
-## Important Notes
-
-A container component:
-
-✅ Manages state  
-✅ Handles side effects  
-✅ Contains business logic  
-❌ Does NOT focus on UI design
-
----
-
-# Presenter Component
+> Important Notes
+>
+> > A container component:❌ Does NOT focus on UI design
+> > Not concerned with visual rendering.
 
 ## What Is a Presenter Component?
 
 A **Presenter Component** is responsible only for rendering UI.
 
-It receives:
-
-- Data via props
-- Event handlers via props
-
-Then it renders JSX without caring where the data came from.
-
----
-
-## Responsibilities
-
-A Presenter Component typically:
-
+- It receives data and event handlers , callbacks via props
 - Focuses on UI rendering
-- Receives data through props
-- Receives callbacks through props
 - Renders JSX only
 - Remains reusable and easy to test
 
+Then it renders JSX without caring where the data came from.
+
+A Presenter Component typically:
+
 ---
 
-## Important Notes
+### Important Notes
 
 A presenter component:
 
@@ -144,8 +105,8 @@ It may contain small local UI state such as:
 - Uncontrolled input values
 
 ---
- 
-# Example Structure
+
+## Example Structure
 
 ```txt
 components/
@@ -164,9 +125,9 @@ features/
 
 ---
 
-# Example
+## Example
 
-## Container Component
+### Container Component
 
 ```tsx
 import { useEffect, useState } from "react";
@@ -187,7 +148,7 @@ export default function UserContainer() {
 
 ---
 
-## Presenter Component
+### Presenter Component
 
 ```tsx
 type Props = {
@@ -209,9 +170,7 @@ export default function UserPresenter({ user }: Props) {
 }
 ```
 
----
-
-# Modern Alternative: Custom Hooks
+## Modern Alternative: Custom Hooks
 
 In modern React applications, developers often move container logic into **custom hooks**.
 
@@ -219,9 +178,7 @@ This still follows the same principle:
 
 > Separate logic from UI.
 
----
-
-## Example Using a Custom Hook
+### Example Using a Custom Hook
 
 ```tsx
 import { useEffect, useState } from "react";
@@ -239,9 +196,7 @@ export const useUser = () => {
 };
 ```
 
----
-
-## Using the Hook Inside a Component
+### Using the Hook Inside a Component
 
 ```tsx
 import { useUser } from "./useUser";
@@ -255,54 +210,42 @@ export default function UserProfile() {
 }
 ```
 
----
+## Advantages of This Pattern
 
-# Advantages of This Pattern
-
-## ✅ Clear Separation of Responsibilities
+### ✅ Clear Separation of Responsibilities
 
 You immediately know:
 
 - Where business logic lives
 - Where UI rendering happens
 
----
-
-## ✅ Easier to Read
+### ✅ Easier to Read
 
 - Smaller files
 - Cleaner structure
 - Focused responsibilities
 
----
-
-## ✅ Better Reusability
+### ✅ Better Reusability
 
 The same presenter component can work with multiple containers.
 
----
-
-## ✅ Easier Testing
+### ✅ Easier Testing
 
 Presenter components are easy to test because they only depend on props.
 
----
-
-## ✅ Better Scalability
+### ✅ Better Scalability
 
 This pattern becomes very useful as applications grow larger and business logic becomes more complex.
 
----
-
-# Trade-offs
+## Trade-offs
 
 While this pattern improves separation of concerns,
 it can introduce additional files and abstraction.
 For very small components, this may become unnecessary complexity.
 
-# When Should You Use This Pattern?
+## When Should You Use This Pattern?
 
-## ✅ Use It When
+### ✅ Use It When
 
 - Components become large
 - Business logic becomes complex
@@ -310,17 +253,13 @@ For very small components, this may become unnecessary complexity.
 - Multiple developers work on the same feature
 - You are building scalable applications
 
----
-
-## ❌ Avoid It When
+### ❌ Avoid It When
 
 - Components are very small
 - Logic is trivial
 - Splitting components adds unnecessary complexity
 
----
-
-# Common Beginner Mistakes
+## Common Beginner Mistakes
 
 ## ❌ Avoid These Mistakes
 
@@ -329,9 +268,7 @@ For very small components, this may become unnecessary complexity.
 - Overusing the pattern for tiny components
 - Mixing UI logic with business logic again after separation
 
----
-
-# Summary
+## Summary
 
 The **Container & Presenter Pattern** helps developers:
 
@@ -342,3 +279,9 @@ The **Container & Presenter Pattern** helps developers:
 - Write easier-to-test code
 
 This pattern is especially useful in medium and large React applications where components start handling too many responsibilities.
+
+## Resources
+
+- [medium.com](https://medium.com/@jeffersonscjunior/react-container-presenter-pattern-779bb7a35561)
+- [patterns.dev](https://www.patterns.dev/react/presentational-container-pattern/)
+- [greatfrontend](https://www.greatfrontend.com/questions/quiz/explain-the-presentational-vs-container-component-pattern-in-react)
