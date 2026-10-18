@@ -1,7 +1,6 @@
 # Compound Component Pattern in React
 
-## Overview
-
+**Overview**
 The **Compound Component Pattern** is one of the most powerful React patterns for building:
 
 - Flexible components
@@ -12,9 +11,10 @@ The **Compound Component Pattern** is one of the most powerful React patterns fo
 Instead of placing all functionality inside a single component with dozens of props, this pattern distributes responsibilities across multiple cooperating components.
 
 The compound component pattern allows you to create components that all work together to perform a task.
----
 
-# Understanding Compound Components
+in React is a design pattern where a parent component works together with its child components to share an implicit state and behaviour. Instead of passing a long list of props, the parent manages the state and exposes flexible child components (<Modal.Header>, <Modal.Body>, <Modal.Footer>, and so on) so that consumers can compose the UI naturally, just like using native HTML elements.
+
+## Understanding Compound Components
 
 Compound components work together as a cohesive unit while maintaining separate responsibilities.
 
@@ -31,15 +31,11 @@ Both `<select>` and `<option>` are separate elements, but together they create o
 
 The same concept applies in React.
 
----
-
-# The Problem with Monolithic Components
+## The Problem with Monolithic Components
 
 Large configurable components often become difficult to maintain.
 
----
-
-## ❌ Monolithic Approach
+- ❌ Monolithic Approach
 
 ```tsx
 <DataTable
@@ -61,11 +57,7 @@ Problems with this approach:
 - Poor readability
 - Reduced flexibility
 
----
-
-# Compound Component Solution
-
-## ✅ Compound Component Approach
+✅ Compound Component Approach
 
 ```tsx
 <DataTable.Root data={data}>
@@ -87,31 +79,23 @@ Problems with this approach:
 </DataTable.Root>
 ```
 
----
+## Benefits of Compound Components
 
-# Benefits of Compound Components
-
-## ✅ Flexibility
+### ✅ Flexibility
 
 Easily include or exclude functionality depending on the use case.
 
----
-
-## ✅ Better Maintainability
+### ✅ Better Maintainability
 
 Responsibilities are distributed across smaller focused components.
 
----
-
-## ✅ Better Developer Experience
+### ✅ Better Developer Experience
 
 - Cleaner JSX structure
 - Easier IntelliSense
 - Better readability
 
----
-
-# Performance Optimization
+### Performance Optimization
 
 For complex compound components, splitting contexts can reduce unnecessary re-renders.
 
@@ -120,29 +104,31 @@ const CardStateContext = createContext({} as any);
 const CardConfigContext = createContext({} as any);
 ```
 
----
-
-# TypeScript Best Practices
+## TypeScript Best Practices
 
 ```tsx
-interface CardRootProps {
+interface Props {
   children: React.ReactNode;
-  variant?: "default" | "outline" | "ghost";
-  size?: "default" | "sm" | "lg";
+  isOpen: boolean;
+  isClose: () => void;
 }
+
+interface CompoundComponent extends React.FC<Props> {
+  Body: React.FC<{ children: React.ReactNode }>;
+  Header: React.FC<{ children: React.ReactNode }>;
+  Footer: React.FC<{ children: React.ReactNode }>;
+}
+
+const Model: CompoundComponent = ({ children, isOpen, isClose }) => {
 ```
 
----
-
-# Testing Compound Components
+## Testing Compound Components
 
 ```tsx
 import { render, screen } from "@testing-library/react";
 ```
 
----
-
-# Summary
+## Summary
 
 The **Compound Component Pattern** helps developers:
 
@@ -151,6 +137,10 @@ The **Compound Component Pattern** helps developers:
 - Improve flexibility
 - Create reusable design systems
 
-// resources 
-  1- https://vercel.com/academy/shadcn-ui/compound-components-and-advanced-composition
-  2- https://www.patterns.dev/react/compound-pattern/
+## Resources
+
+1- [vercel.com](https://vercel.com/academy/shadcn-ui/compound-components-and-advanced-composition)
+
+2- [patterns.dev](https://www.patterns.dev/react/compound-pattern/)
+
+2- [freecodecamp.org](https://www.freecodecamp.org/news/compound-components-pattern-in-react/#heading-a-messy-modal-component)
